@@ -45,10 +45,6 @@ class rendering(QtGui.QDialog):
 		self.Dialog.show()
         	return self.app.exec_() 
 
-        def createTrayIcon(self):
-        	icona = QtGui.QIcon("cap.png")
-        	self.Systray=QtGui.QSystemTrayIcon(icona)
-        	self.Systray.show()
 
 	# Funzioni di segnali:
 	def on_buttonSearch_clicked(self):
@@ -57,6 +53,12 @@ class rendering(QtGui.QDialog):
   	def on_buttonExit_clicked(self):
   		sys.exit(self.app.exec_())
   	#
+  	
+  	
+  	def createTrayIcon(self):
+        	icona = QtGui.QIcon("cap.png")
+        	self.Systray=QtGui.QSystemTrayIcon(icona)
+        	self.Systray.show()
 
   	def iconActivated(self, reason):
   		if reason == QtGui.QSystemTrayIcon.Trigger:
