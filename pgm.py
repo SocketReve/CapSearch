@@ -41,12 +41,10 @@ class rendering(QtGui.QDialog):
 		self.app.connect(self.ui.buttonExit,QtCore.SIGNAL("clicked()"),self.actionButtonExit)		
 		self.Systray.activated.connect(self.iconActivated)
 		#
-        	
-        	
-	def runInterface(self):
+		
 		self.Dialog.show()
-		return self.app.exec_() 
-	
+        	return self.app.exec_() 
+
         def createTrayIcon(self):
         	icona = QtGui.QIcon("cap.png")
         	self.Systray=QtGui.QSystemTrayIcon(icona)
@@ -54,8 +52,7 @@ class rendering(QtGui.QDialog):
 
 	# Funzioni di segnali:
 	def actionButtonSearch(self):
-  		ricerca = readSql()
-  		self.ui.lineCap.setText(str(ricerca.query(self.ui.lineProv.text(),self.ui.lineComune.text(),self.ui.lineLocal.text())))
+  		self.ui.lineCap.setText(str(self.query(self.ui.lineProv.text(),self.ui.lineComune.text(),self.ui.lineLocal.text())))
   	
   	def actionButtonExit(self):
   		sys.exit(self.app.exec_())
@@ -72,25 +69,24 @@ class rendering(QtGui.QDialog):
   				self.active = True
 
 
-class readSql():
 	def query(self,provincia,comune,localita=None):
 		con = sqlite3.connect("databaseCap.db")
 		cur = con.cursor()
 		provincia=str(provincia)
 		comune=str(comune)
 		localita=str(localita)
-		
+	
 		if localita=="":
 			cur.execute("SELECT capi_cap FROM tab_cap WHERE prov_cap = '"+upper(provincia)+"' AND comu_cap = '"+upper(comune)+"'")
 		else:
 			cur.execute("SELECT capi_cap FROM tab_cap WHERE prov_cap = '"+upper(provincia)+"' AND comu_cap = '"+upper(comune)+"' AND fraz_cap = '"+upper(localita)+"' OR topo_cap = '"+upper(localita)+"'")
 		var = cur.fetchone()
-		
+	
 		if var==None:
 			return "Errore"
 		else:
 			return var[0]
 
+
 if __name__ == "__main__":
-	var = rendering()
-	var.runInterface() 										# mostra il dialog precedentemente creato
+	var = rendering()									# mostra il dialog precedentemente creato
