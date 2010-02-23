@@ -35,9 +35,7 @@ class rendering(QtGui.QDialog):
 
 		self.createTrayIcon()
 		
-		# Segnali:
-		self.app.connect(self.ui.buttonCerca,QtCore.SIGNAL("clicked()"),self.on_buttonSearch_clicked)
-		self.app.connect(self.ui.buttonExit,QtCore.SIGNAL("clicked()"),self.on_buttonExit_clicked)		
+		# Segnali:	
 		self.Systray.activated.connect(self.iconActivated)
 		#
 		
