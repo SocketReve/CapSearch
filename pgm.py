@@ -37,8 +37,8 @@ class rendering(QtGui.QDialog):
 		self.createTrayIcon()
 		
 		# Segnali:
-		self.app.connect(self.ui.buttonCerca,QtCore.SIGNAL("clicked()"),self.actionButtonSearch)
-		self.app.connect(self.ui.buttonExit,QtCore.SIGNAL("clicked()"),self.actionButtonExit)		
+		self.app.connect(self.ui.buttonCerca,QtCore.SIGNAL("clicked()"),self.on_buttonSearch_clicked)
+		self.app.connect(self.ui.buttonExit,QtCore.SIGNAL("clicked()"),self.on_buttonExit_clicked)		
 		self.Systray.activated.connect(self.iconActivated)
 		#
 		
@@ -51,10 +51,10 @@ class rendering(QtGui.QDialog):
         	self.Systray.show()
 
 	# Funzioni di segnali:
-	def actionButtonSearch(self):
+	def on_buttonSearch_clicked(self):
   		self.ui.lineCap.setText(str(self.query(self.ui.lineProv.text(),self.ui.lineComune.text(),self.ui.lineLocal.text())))
   	
-  	def actionButtonExit(self):
+  	def on_buttonExit_clicked(self):
   		sys.exit(self.app.exec_())
   	#
 
