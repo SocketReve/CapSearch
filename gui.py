@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'gui.ui'
 #
-# Created: Tue Feb 23 12:23:51 2010
+# Created: Tue Feb 23 14:14:50 2010
 #      by: PyQt4 UI code generator 4.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -51,6 +51,7 @@ class Ui_Dialog(object):
         self.lineProv.setSizePolicy(sizePolicy)
         self.lineProv.setMinimumSize(QtCore.QSize(0, 25))
         self.lineProv.setMaximumSize(QtCore.QSize(51, 16777215))
+        self.lineProv.setMaxLength(2)
         self.lineProv.setObjectName("lineProv")
         self.horizontalLayout.addWidget(self.lineProv)
         self.labelLocal = QtGui.QLabel(self.layoutWidget)
