@@ -47,7 +47,7 @@ class rendering(QtGui.QDialog):
 
 	# Funzioni di segnali:
 	def on_buttonSearch_clicked(self):
-  		self.ui.lineCap.setText(unicode(self.query(self.ui.lineProv.text(),self.ui.lineComune.text(),self.ui.lineLocal.text())))
+  		self.ui.lineCap.setText(unicode(self.query()))
   	
   	def on_buttonExit_clicked(self):
   		sys.exit(self.app.exec_())
@@ -70,12 +70,12 @@ class rendering(QtGui.QDialog):
   				self.active = True
 
 
-	def query(self,provincia,comune,localita=None):
+	def query(self):
 		con = sqlite3.connect("databaseCap.db")
 		cur = con.cursor()
-		provincia=unicode(provincia)
-		comune=unicode(comune)
-		localita=unicode(localita)
+		provincia=unicode(self.ui.lineProv.text())
+		comune=unicode(self.ui.lineComune.text())
+		localita=unicode(self.ui.lineLocal.text())
 	
 		if localita=="":
 			cur.execute("SELECT capi_cap FROM tab_cap WHERE prov_cap = '"+provincia.upper()+"' AND comu_cap = '"+comune.upper()+"'")
